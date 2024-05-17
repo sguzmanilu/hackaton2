@@ -1,0 +1,11 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api para Hackaton2",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npx serverless deploy --aws-profile h2"
+  },
+  "author": "ILU",
+  "license": "ISC"
+}
