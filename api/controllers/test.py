@@ -1,4 +1,7 @@
 from flask_restful import reqparse, abort, Resource
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from models import User
 
 TODOS = {
     'todo1': {'task': 'build an API'},
@@ -14,7 +17,11 @@ parser = reqparse.RequestParser()
 parser.add_argument('task')
 
 class TodoController(Resource):
+    
+    @jwt_required()
     def get(self, todo_id=None):
+        user_id = get_jwt_identity()
+        print('user_id ', user_id)
         if todo_id:
             abort_if_todo_doesnt_exist(todo_id)
             return TODOS[todo_id]
