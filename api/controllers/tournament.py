@@ -1,14 +1,23 @@
 from db import db
-from models import Tournament
+from models import Tournament, Competitor, User
 from flask_restful import Resource, request, fields, marshal
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
+user_model_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'username': fields.String,
+}
 
 model_fields = {
     'id': fields.Integer,
     'name': fields.String,
     'description': fields.String,
-    'owner': fields.Integer
+    'owner': fields.Nested(user_model_fields),
+    'total_competitors': fields.Integer,
 }
+
+
 
 class TournamentController(Resource):
     
@@ -16,10 +25,17 @@ class TournamentController(Resource):
     def get(self, id=None):
         if id:
             resource = Tournament.query.filter_by(id=id).first()
+            resource.total_competitors = Competitor.query.filter_by(tournament=id).count()
+            resource.owner = User.query.filter_by(id=resource.owner).first()
             return marshal(resource, model_fields), 200
         else:
             query = Tournament.query.filter_by(is_active=True).all()
-            return [marshal(u, model_fields) for u in query], 200
+            response = [marshal(u, model_fields) for u in query]
+            for i, item in enumerate(query):
+                response[i]['owner'] = marshal(User.query.filter_by(id=item.owner).first(), user_model_fields)
+                response[i]['total_competitors'] = Competitor.query.filter_by(tournament=item.id).count()
+                
+            return response, 200
     
     @jwt_required()
     def post(self):
