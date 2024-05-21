@@ -104,6 +104,11 @@ class CompetitorController(Resource):
     @jwt_required()
     def get(self, tournament_id):
         
+        # Validamos que el torneo exista
+        tournament = Tournament.query.get(tournament_id)
+        if not tournament:
+            return {'message': 'Tournament not found'}, 404
+        
         query = Competitor.query.filter_by(is_active=True, tournament=tournament_id).all()
         response = [marshal(u, competitor_fields) for u in query]
         for i, item in enumerate(query):
