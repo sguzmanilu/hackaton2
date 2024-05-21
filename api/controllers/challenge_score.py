@@ -44,7 +44,7 @@ class ChallengeScoreController(Resource):
         # Preparamos el ki_level del competidor para la nueva actualizacion
         if competitor.ki_level is None:
             competitor.ki_level = 0
-        else:
+        elif challenge_assign.score is not None:
             competitor.ki_level -= challenge_assign.score
         
         # Actualizamos el score del reto
