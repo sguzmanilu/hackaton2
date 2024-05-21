@@ -18,7 +18,7 @@ class TournamentController(Resource):
             resource = Tournament.query.filter_by(id=id).first()
             return marshal(resource, model_fields), 200
         else:
-            query = Tournament.query.all()
+            query = Tournament.query.filter_by(is_active=True).all()
             return [marshal(u, model_fields) for u in query], 200
     
     @jwt_required()

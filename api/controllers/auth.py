@@ -1,12 +1,24 @@
-import bcrypt
 from db import db
 from bycript_app import bcrypt
 from models import User
-from flask_restful import reqparse, abort, Resource
-from flask_jwt_extended import create_access_token
-from werkzeug.security import generate_password_hash
+from flask_restful import reqparse, abort, Resource, fields, marshal
+from flask_jwt_extended import create_access_token, jwt_required
+
+model_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'username': fields.String,
+    'type': fields.Integer,
+}
 
 class AuthController(Resource):
+    
+    @jwt_required()
+    def get(self):
+        # Listar usuarios activos
+        query = User.query.filter_by(is_active=True).all()
+        return [marshal(u, model_fields) for u in query], 200
+    
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('username', required=True, help='Username is required')
