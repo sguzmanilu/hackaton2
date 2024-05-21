@@ -3,3 +3,4 @@ from .tournament import Tournament
 from .category import Category
 from .challenge import Challenge
 from .competitor import Competitor
+from .challenge_assign import ChallengeAssign

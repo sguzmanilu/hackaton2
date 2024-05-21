@@ -43,6 +43,7 @@ api.add_resource(c.CategoryController, '/category', '/category/<int:id>')
 api.add_resource(c.CategoryWithChallengesController, '/category/challenges')
 api.add_resource(c.ChallengeController, '/challenge', '/challenge/<int:id>')
 api.add_resource(c.CompetitorController, '/competitor', '/competitor/<int:tournament_id>')
+api.add_resource(c.ChallengeAssignController, '/challenge-assign', '/challenge-assign/<int:competitor_id>')
 # api.add_resource(c.TodoController, '/todos', '/todos/<int:todo_id>')
 
 if __name__ == '__main__':

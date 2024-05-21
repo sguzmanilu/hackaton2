@@ -18,7 +18,6 @@ user_fields = {
 
 parser = reqparse.RequestParser()
 parser.add_argument('tournament', type=int, required=True, help='Tournament is required')
-# parser.add_argument('users', type=list, required=True, help='Users are required')
 parser.add_argument('users', type=dict, action='append', required=True, help='Users are required')
 
 class CompetitorController(Resource):
@@ -28,7 +27,7 @@ class CompetitorController(Resource):
         args = parser.parse_args()
         
         # Validamos que el torneo exista
-        tournament = Tournament.query.get(args['tournament'])
+        tournament = Tournament.query.filter_by(is_active=True, id=args['tournament']).first()
         if not tournament:
             return {'message': 'Tournament not found'}, 404
         
@@ -40,12 +39,13 @@ class CompetitorController(Resource):
         # Creamos los competidores por cada usuario
         competitors = []
         for item in args['users']:
+            # Validamos que el usuario exista
             user = User.query.get(item.get('user'))
             if not user:
                 return {'message': 'User not found'}, 404
             
             # Validamos que el usuario no esté ya inscrito
-            competitor = Competitor.query.filter_by(user=item.get('user'), tournament=tournament.id).first()
+            competitor = Competitor.query.filter_by(is_active=True, user=item.get('user'), tournament=tournament.id).first()
             if competitor:
                 return {'message': 'User already registered'}, 400
             
@@ -65,7 +65,7 @@ class CompetitorController(Resource):
         args = parser.parse_args()
         
         # Validamos que el torneo exista
-        tournament = Tournament.query.get(args['tournament'])
+        tournament = Tournament.query.filter_by(is_active=True, id=args['tournament']).first()
         if not tournament:
             return {'message': 'Tournament not found'}, 404
         
@@ -78,12 +78,13 @@ class CompetitorController(Resource):
         new_competitors = []
         old_competitors = []
         for item in args['users']:
+            # Validamos que el usuario exista
             user = User.query.get(item.get('user'))
             if not user:
                 return {'message': 'User not found'}, 404
             
             # Validamos que el usuario no esté ya inscrito, si ya está inscrito lo omitimos
-            competitor = Competitor.query.filter_by(user=item.get('user'), tournament=tournament.id).first()
+            competitor = Competitor.query.filter_by(is_active=True, user=item.get('user'), tournament=tournament.id).first()
             if competitor:
                 old_competitors.append(competitor.id)
             else:
