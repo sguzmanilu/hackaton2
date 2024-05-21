@@ -36,7 +36,8 @@ api.prefix = '/api'
 
 api.add_resource(c.AuthController, '/auth')
 api.add_resource(c.RegisterController, '/register')
-api.add_resource(c.TodoController, '/todos', '/todos/<int:todo_id>')
+api.add_resource(c.TournamentController, '/tournament', '/tournament/<int:id>')
+# api.add_resource(c.TodoController, '/todos', '/todos/<int:todo_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
