@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import ProtectedRoute from './utils/protectedRoute';
 import MainAppBar from './components/appBar';
 import Home from "./pages/home";
+import Login from "./pages/login";
 import 'react-toastify/dist/ReactToastify.css'
 
 const App = (props) => {
@@ -11,7 +12,7 @@ const App = (props) => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/"
           element={

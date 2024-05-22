@@ -32,7 +32,9 @@ class AuthController(Resource):
             abort(404, message="User {} doesn't exist".format(username))
         if bcrypt.check_password_hash(user.password, password):
             access_token = create_access_token(identity=user.id)
-            return {'access_token': access_token}, 200
+            response = marshal(user, model_fields)
+            response['token'] = access_token
+            return response, 200
         else:
             return {'message': 'Invalid credentials'}, 401
         

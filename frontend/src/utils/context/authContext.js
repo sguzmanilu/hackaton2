@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 const AuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
-  const [selectedUser, setSelectedUser] = useState(null);
 
   const getToken = () => {
     const storage = localStorage.getItem("user");
@@ -12,45 +11,28 @@ const AuthProvider = ({ children }) => {
     return null;
   };
 
-  const getUsuario = () => {
-    const storage = localStorage.getItem("user");
-    if (storage) {
-      return JSON.parse(storage).usuario;
-    }
-    return null;
-  };
-
   const getUser = () => {
     const storage = localStorage.getItem("user");
     if (storage) {
-      return JSON.parse(storage).usuario;
+      return JSON.parse(storage).username;
     }
     return null;
   };
 
-  const getNombre = () => {
+  const getName = () => {
     const storage = localStorage.getItem("user");
     if (storage) {
-      const data = JSON.parse(storage);
-      const { nombre, apellido } = data;
-      return `${nombre}`;
+      return JSON.parse(storage).name;
     }
     return null;
   };
 
-  const getSelectedUserID = () => {
-    if(!selectedUser) return null;
-    return selectedUser.id;
-  }
-  
-  const getSelectedUserDPI = () => {
-    if(!selectedUser) return null;
-    return selectedUser.usuario;
-  }
-
-  const getSelectedUserName = () => {
-    if(!selectedUser) return getNombre();
-    return selectedUser.nombre;
+  const getUserId = () => {
+    const storage = localStorage.getItem("user");
+    if (storage) {
+      return JSON.parse(storage).id;
+    }
+    return null;
   }
 
   const isAuthenticated = () => {
@@ -77,13 +59,8 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         getUser,
-        getNombre,        
-        selectedUser,
-        setSelectedUser,
-        getSelectedUserName,
-        getSelectedUserDPI,
-        getSelectedUserID,
-        getUsuario
+        getName,
+        getUserId
       }}
     >
       {children}

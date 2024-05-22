@@ -21,7 +21,7 @@ const pages = ['Products', 'Pricing', 'Blog'];
 
 function MainAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { getUsuario, getNombre, logout } = React.useContext(AuthContext);
+  const { getUser, getName, logout } = React.useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -89,12 +89,12 @@ function MainAppBar() {
             <Box sx={{ flexGrow: 0 }}>
               <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column', marginRight: '2rem' }}>
-                  <Typography sx={{ lineHeight: 1 }} variant='button'>{getNombre()}</Typography>
-                  <Typography sx={{ lineHeight: 1 }} variant='caption' color='#B6B4B4'>{getUsuario()}</Typography>
+                  <Typography sx={{ lineHeight: 1 }} variant='button'>{getName()}</Typography>
+                  <Typography sx={{ lineHeight: 1 }} variant='caption' color='#B6B4B4'>{getUser()}</Typography>
                 </div>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={getNombre()} src="/static/images/avatar/2.jpg" />
+                    <Avatar alt={getName()} src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
               </div>
