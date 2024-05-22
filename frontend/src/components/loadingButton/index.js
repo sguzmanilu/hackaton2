@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, CircularProgress } from '@mui/material';
 
 export default function LoadingButton(props) {

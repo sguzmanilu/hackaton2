@@ -7,39 +7,34 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { toast } from "react-toastify";
 import LoadingButton from '../../components/loadingButton';
-import { AuthContext } from "../../utils/context/authContext";
 import api from "../../utils/api";
 
-export default function LoginForm(props) {
+export default function RegisterForm(props) {
 
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = React.useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e?.preventDefault();
-    if (username !== "" && password !== "") {
+    if (name !== "" && username !== "" && password !== "") {
       setLoading(true)
-      api.Post('auth', { username, password })
+      api.Post('register', { name, username, password, type: 2 })
         .then((response) => {
-          toast.success("Bienvenido");
-          login(JSON.stringify(response.data))
-          navigate(`/`);
+          console.log('data ', response.data)
+          toast.success("Inicia sesión para continuar");
+          navigate(`/login`);
         })
         .catch((e) => {
-          toast.error("Error al iniciar sesión");
+          toast.error("Error al registrarse, intente nuevamente");
         })
         .finally(() => {
           setLoading(false)
         })
     }
-  }
-
-  const handleRegister = () => {
-    navigate('/register')
   }
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -52,11 +47,21 @@ export default function LoginForm(props) {
     <div className={style.loginForm}>
       <Typography
         variant='h4'
-        style={{ marginBottom: '5rem', textAlign: 'center'}}
+        style={{ marginBottom: '5rem', textAlign: 'center' }}
       >
-        Hola, Bienvenido
+        Registrarme
       </Typography>
       <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TextField
+            id="name"
+            label="Nombre completo"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+          />
+        </Grid>
         <Grid item xs={12}>
           <TextField
             id="username"
@@ -71,7 +76,7 @@ export default function LoginForm(props) {
           <TextField
             id="password"
             label="Contraseña"
-            type={showPassword ? 'text': 'password'}
+            type={showPassword ? 'text' : 'password'}
             variant="outlined"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -95,17 +100,17 @@ export default function LoginForm(props) {
             loading={loading}
             variant="contained"
             color="primary"
-            onClick={handleLogin}
-          >Iniciar Sesión</LoadingButton>
+            onClick={handleRegister}
+          >Registrarme</LoadingButton>
         </Grid>
         <Grid item xs={12}>
           <Button
             fullWidth
             variant="text"
             color="secondary"
-            onClick={handleRegister}
+            onClick={() => navigate(`/login`)}
           >
-            Registrarse
+            Regresar
           </Button>
         </Grid>
       </Grid>
