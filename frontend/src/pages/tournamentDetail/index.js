@@ -10,6 +10,7 @@ import CompetitorsGrid from './competitorsGrid';
 import ConfirmDialog from '../../components/dialogs/confirmDialog';
 import api from "../../utils/api";
 import { useNavigate, useParams } from 'react-router-dom';
+import CompetitorForm from './competitorForm';
 
 const TournamentDetail = (props) => {
 
@@ -67,19 +68,19 @@ const TournamentDetail = (props) => {
         {/* <TournamentGrid data={data} handleItemEdit={handleItemEdit} handleItemDelete={handleItemDelete} /> */}
       </Grid>
 
-      {/* <TransitionsModal
+      <TransitionsModal
         open={modalForm}
         handleClose={() => setModalForm(false)}
-        title={item ? 'Editar Torneo' : 'Nuevo Torneo'}
+        title={'Agregar Participantes'}
       >
-        <TournamentForm
-          item={item}
+        <CompetitorForm
+          _competitors={competitors}
           handleClose={() => {
+            getCompetitors();
             setModalForm(false);
-            getTournaments();
           }}
         />
-      </TransitionsModal> */}
+      </TransitionsModal>
       {/* <ConfirmDialog
         open={dialogDelete}
         title='Eliminar Torneo'
