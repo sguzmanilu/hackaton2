@@ -1,14 +1,14 @@
 import React from 'react';
 import style from './style.module.css';
-import LoginForm from './loginForm';
+import RegisterForm from './registerForm';
 
 
-const Login = (props) => {
+const Register = (props) => {
 
   return (
     <div className={style.loginContainer}>
       <div className={style.loginFormContainer}>
-        <LoginForm />
+        <RegisterForm />
       </div>
       <div className={style.loginLogoContainer}>
         <div
@@ -21,5 +21,5 @@ const Login = (props) => {
   )
 }
 
-export default Login;
+export default Register;
 

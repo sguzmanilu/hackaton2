@@ -1,9 +1,11 @@
 import React from "react";
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from './utils/protectedRoute';
 import MainAppBar from './components/appBar';
 import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/register";
 import 'react-toastify/dist/ReactToastify.css'
 
 const App = (props) => {
@@ -11,7 +13,8 @@ const App = (props) => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/login" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/"
           element={
