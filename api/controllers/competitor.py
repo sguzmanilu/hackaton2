@@ -1,5 +1,5 @@
 from db import db
-from models import Competitor, Tournament, User
+from models import Competitor, Tournament, User, ChallengeAssign
 from flask_restful import Resource, request, fields, marshal, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
@@ -114,6 +114,7 @@ class CompetitorController(Resource):
         response = [marshal(u, competitor_fields) for u in query]
         for i, item in enumerate(query):
             response[i]['user'] = marshal(User.query.filter_by(id=item.user).first(), user_fields)
+            response[i]['challenges'] = ChallengeAssign.query.filter_by(competitor=item.id, is_active=True).count()
         
         return response, 200
         
