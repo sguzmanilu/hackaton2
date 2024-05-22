@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from './utils/protectedRoute';
 import MainAppBar from './components/appBar';
-import Home from "./pages/home";
+import Tournaments from "./pages/tournaments";
+import TournamentDetail from "./pages/tournamentDetail";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import 'react-toastify/dist/ReactToastify.css'
@@ -22,8 +23,8 @@ const App = (props) => {
               <MainAppBar />
             </ProtectedRoute>
           }>
-          <Route index element={<Home />} />
-          <Route path="otra" element={<Home />} />
+          <Route index element={<Tournaments />} />
+          <Route path="tournament/:tournamentId" element={<TournamentDetail />} />
         </Route>
         <Route
           path="*"

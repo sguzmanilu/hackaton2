@@ -17,7 +17,10 @@ import { useNavigate } from "react-router-dom";
 import AdbIcon from '@mui/icons-material/Adb';
 import { Button } from '@mui/material';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+  { name: 'Torneos', path: '/' },
+  { name: 'Mantenimientos', path: '/players' },
+];
 
 function MainAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -53,40 +56,40 @@ function MainAppBar() {
       <AppBar position="static" className={style.appbar}>
         <Container maxWidth="xxl" disableGutters >
           <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 0, display: 'flex' }}>
-              {/* <img src='/logoILU.png' className={style.logoilu} /> */}
-              <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="#app-bar-with-responsive-menu"
-                sx={{
-                  mr: 2,
-                  display: { xs: 'none', md: 'flex' },
-                  fontFamily: 'monospace',
-                  fontWeight: 700,
-                  letterSpacing: '.3rem',
-                  color: 'inherit',
-                  textDecoration: 'none',
-                }}
-              >
-                HACKATON
-              </Typography>
-
+            <Box sx={{ flexGrow: 0, display: 'flex', paddingLeft: '2rem' }}>
+              <div className={style.logoContainer}>
+                <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    mr: 2,
+                    display: { xs: 'none', md: 'flex' },
+                    fontFamily: 'monospace',
+                    fontWeight: 700,
+                    letterSpacing: '.3rem',
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+                >
+                  HACKATON
+                </Typography>
+              </div>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={() => null}
+                  onClick={() => navigate(page.path)}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  {page}
+                  {page.name}
                 </Button>
               ))}
             </Box>
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, paddingRight: '2rem' }}>
               <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column', marginRight: '2rem' }}>
                   <Typography sx={{ lineHeight: 1 }} variant='button'>{getName()}</Typography>
@@ -125,7 +128,9 @@ function MainAppBar() {
         </Container>
       </AppBar>
       <div className={style.content}>
-        <Outlet />
+        <Container maxWidth="xl">
+          <Outlet />
+        </Container>
       </div>
     </Box>
   );

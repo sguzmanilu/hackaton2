@@ -24,28 +24,28 @@ class Api {
         const endpoint = `${HOST}${uri}${params === null ? "" : urlParameters}`;
         const storage = localStorage.getItem("user");
         const token = JSON.parse(storage || "{}").token;
-        const request = await axios.get(endpoint, { headers: { ...(token ? { Authorization:  `Token ${token}` } : {}) } })
+        const request = await axios.get(endpoint, { headers: { ...(token ? { Authorization:  `Bearer ${token}` } : {}) } })
         return request;
     }
 
     async Post(uri, formData) {
         const storage = localStorage.getItem("user");
         const token = JSON.parse(storage || "{}").token;
-        const request = await axios.post(`${HOST}${uri}`, formData, { headers: { ...(token ? { Authorization:  `Token ${token}` } : {}) } });
+        const request = await axios.post(`${HOST}${uri}`, formData, { headers: { ...(token ? { Authorization:  `Bearer ${token}` } : {}) } });
         return request;
     }
 
     async Put(uri, formData) {
         const storage = localStorage.getItem("user");
         const token = JSON.parse(storage || "{}").token;
-        const request = await axios.put(`${HOST}${uri}`, formData, { headers: { ...(token ? { Authorization:  `Token ${token}` } : {}) } });
+        const request = await axios.put(`${HOST}${uri}`, formData, { headers: { ...(token ? { Authorization:  `Bearer ${token}` } : {}) } });
         return request;
     }
 
     async Delete(uri) {
         const storage = localStorage.getItem("user");
         const token = JSON.parse(storage || "{}").token;
-        const request = await axios.delete(`${HOST}${uri}`, { headers: { ...(token ? { Authorization:  `Token ${token}` } : {}) } });
+        const request = await axios.delete(`${HOST}${uri}`, { headers: { ...(token ? { Authorization:  `Bearer ${token}` } : {}) } });
         return request;
     }
 }

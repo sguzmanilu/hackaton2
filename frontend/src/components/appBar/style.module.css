@@ -1,5 +1,11 @@
 .appbar {
-    padding: 0 3rem;
+    /* padding: 0 3rem; */
+    background-color: #2B597B !important;
+}
+
+.logoContainer {
+    display: flex;
+    margin: auto;
 }
 
 .logoilu {
@@ -13,6 +19,7 @@
     overflow-x: hidden;
     width: 100vw;
     margin: 0;
+    padding-top: 2rem;
     /*padding: 1rem 3rem;*/
 }
 
