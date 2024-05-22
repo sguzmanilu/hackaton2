@@ -85,14 +85,8 @@ export default function CompetitorsGrid({ data, handleItemEdit, handleItemDelete
         cellRender={(row) => {
           return (
             <div style={{ display: 'flex', flex: 1, justifyContent: 'space-evenly' }}>
-              <IconButton title="Detalle" color="info" onClick={() => handleItemDetail(row.data)}>
+              <IconButton title="Asignar retos" color="info" onClick={() => handleItemDetail(row.data)}>
                 <VisibilityIcon />
-              </IconButton>
-              <IconButton title="Editar" onClick={() => handleItemEdit(row.data)}>
-                <EditIcon />
-              </IconButton>
-              <IconButton title="Eliminar" onClick={() => handleItemDelete(row.data)}>
-                <DeleteIcon />
               </IconButton>
             </div>
           );
