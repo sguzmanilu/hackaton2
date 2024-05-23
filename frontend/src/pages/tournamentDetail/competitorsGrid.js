@@ -19,7 +19,7 @@ import DataGrid, {
   KeyboardNavigation,
 } from "devextreme-react/data-grid";
 
-export default function CompetitorsGrid({ data, handleItemDetail }) {
+export default function CompetitorsGrid({ data, handleItemDetail, handleScores }) {
 
   return (
     <DataGrid
@@ -87,7 +87,7 @@ export default function CompetitorsGrid({ data, handleItemDetail }) {
               <IconButton title="Configurar retos" color="info" onClick={() => handleItemDetail(row.data)}>
                 <BuildIcon />
               </IconButton>
-              <IconButton title="Evaluar retos" color="success" onClick={() => handleItemDetail(row.data)}>
+              <IconButton title="Evaluar retos" color="success" onClick={() => handleScores(row.data)}>
                 <ChecklistRtlIcon />
               </IconButton>
             </div>

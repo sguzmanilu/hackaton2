@@ -10,11 +10,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CompetitorForm from './competitorForm';
 import ChallengeForm from './challengesForm';
 import api from "../../utils/api";
+import ScoreChallengesForm from './scoreChallengesForm';
 
 const TournamentDetail = (props) => {
 
   const [modalCompetitorsForm, setModalCompetitorsForm] = useState(false);
   const [modalChallengesForm, setModalChallengesForm] = useState(false);
+  const [modalScoresForm, setModalScoresForm] = useState(false);
   const [tournament, setTournament] = useState(null);
   const [competitors, setCompetitors] = useState([]);
   const [item, setItem] = useState(null);
@@ -52,6 +54,11 @@ const TournamentDetail = (props) => {
     setModalChallengesForm(true);
   }
 
+  const handleScores = (competitor) => {
+    setItem(competitor);
+    setModalScoresForm(true);
+  }
+
   return (
     <Grid container spacing={3}>
       <HeaderBar
@@ -67,7 +74,7 @@ const TournamentDetail = (props) => {
         </SimpleBreadcrumbs>
       </Grid>
       <Grid container item>
-        <CompetitorsGrid data={competitors} handleItemDetail={handleChallenges} />
+        <CompetitorsGrid data={competitors} handleItemDetail={handleChallenges} handleScores={handleScores} />
       </Grid>
 
       <TransitionsModal
@@ -93,6 +100,19 @@ const TournamentDetail = (props) => {
           handleClose={() => {
             getCompetitors();
             setModalChallengesForm(false);
+          }}
+        />
+      </TransitionsModal>
+      <TransitionsModal
+        open={modalScoresForm}
+        handleClose={() => setModalScoresForm(false)}
+        title={'Asignar retos'}
+      >
+        <ScoreChallengesForm
+          competitor={item}
+          handleClose={() => {
+            getCompetitors();
+            setModalScoresForm(false);
           }}
         />
       </TransitionsModal>
