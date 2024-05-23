@@ -87,7 +87,7 @@ export default function CompetitorsGrid({ data, handleItemDetail, handleScores }
               <IconButton title="Configurar retos" color="info" onClick={() => handleItemDetail(row.data)}>
                 <BuildIcon />
               </IconButton>
-              <IconButton title="Evaluar retos" color="success" onClick={() => handleScores(row.data)}>
+              <IconButton title="Evaluar retos" color={row.data.challenges ? "success" : 'default'} onClick={() => handleScores(row.data)}>
                 <ChecklistRtlIcon />
               </IconButton>
             </div>
