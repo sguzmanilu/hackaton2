@@ -1,54 +1,80 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Grid, TextField, Button, Autocomplete } from "@mui/material";
+import { Grid, Button } from "@mui/material";
+import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import LoadingButton from '../../components/loadingButton';
 import { useParams } from "react-router-dom";
 import api from "../../utils/api";
 
-export default function ChallengeForm({ handleClose, _competitors}) {
-    const [users, setUsers] = useState([]);
-    const [competitors, setCompetitors] = useState([]);
+export default function ChallengeForm({ handleClose, competitor }) {
+    const [challenges, setChallenges] = useState([]);
+    const [challengesAssignedOriginal, setChallengesAssignedOriginal] = useState([]);
+    const [challengesAssigned, setChallengesAssigned] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const { tournamentId } = useParams();
 
     useEffect(() => {
-        getUsers();
-        if (_competitors) {
-            setCompetitors(_competitors.map((c) => c.user))
-        }
-    }, [_competitors])
+        getChallenges();
+        if (competitor)
+            getChallengesByCompetitor();
+    }, [competitor])
 
-    const getUsers = () => {
-        api.Get('auth')
+    const getChallenges = () => {
+        api.Get('category/challenges')
             .then((response) => {
-                setUsers(response.data)
+                setChallenges(response.data)
             })
             .catch((e) => {
-                toast.error("Error al cargar usuarios");
+                toast.error("Error al cargar los retos");
             })
-    
+    }
+
+    const getChallengesByCompetitor = () => {
+        api.Get(`challenge-assign/${competitor.id}`)
+            .then((response) => {
+                setChallengesAssignedOriginal(response.data.map((c) => ({challenge: c.challenge.id})))
+                setChallengesAssigned(response.data.map((c) => ({challenge: c.challenge.id})))
+            })
+            .catch((e) => {
+                toast.error("Error al cargar los retos del participante");
+            })
+    }
+
+    const handleChange = (event, challengeId) => {
+        const { name, checked } = event.target;
+        if (checked) {
+            setChallengesAssigned([...challengesAssigned, { challenge: challengeId }]);
+        }
+        else {
+            setChallengesAssigned(challengesAssigned.filter((c) => c.challenge !== challengeId));
+        }
     }
 
     const onSubmitted = () => {
         setLoading(true);
-        if (competitors.length === 0)
-            return toast.error("Debe asignar al menos un participante");
+        if (challengesAssigned.length === 0)
+            return toast.error("Debe asignar al menos un reto");
 
         // Body format
         const response = {
             tournament: tournamentId,
-            users: competitors.map((c) => ({ user: c.id }))
+            competitor: competitor.id,
+            challenges: challengesAssigned
         }
 
-        if (_competitors.length > 0) {
-            api.Put('competitor', response)
+        if (challengesAssignedOriginal.length > 0) {
+            api.Put('challenge-assign', response)
                 .then(() => {
-                    toast.success("Participantes actualizados");
+                    toast.success("Retos actualizados");
                     handleClose();
                 })
                 .catch((e) => {
-                    toast.error("Error al actualizar los participantes");
+                    toast.error("Error al actualizar los retos");
                 })
                 .finally(() => {
                     setLoading(false);
@@ -56,13 +82,13 @@ export default function ChallengeForm({ handleClose, _competitors}) {
             return null
         }
         else {
-            api.Post('competitor', response)
+            api.Post('challenge-assign', response)
                 .then(() => {
-                    toast.success("Participantes asignados");
+                    toast.success("Retos asignados");
                     handleClose();
                 })
                 .catch((e) => {
-                    toast.error("Error al actualizar los participantes");
+                    toast.error("Error al asignar los retos");
                 })
                 .finally(() => {
                     setLoading(false);
@@ -72,24 +98,30 @@ export default function ChallengeForm({ handleClose, _competitors}) {
     }
 
     return (
-        <Grid container spacing={3} sx={{ marginTop: 1 }}>
-            <Grid item xs={12}>
-                <Autocomplete
-                    id="competitors"
-                    multiple
-                    options={users}
-                    onChange={(event, newValue) => { setCompetitors(newValue) }}
-                    getOptionLabel={(option) => option.name}
-                    value={competitors}
-                    renderInput={(params) => (
-                        <TextField
-                            {...params}
-                            variant="outlined"
-                            label="Participantes"
-                            placeholder="Buscar Participantes..."
-                        />
-                    )}
-                />
+        <Grid container sx={{ marginTop: 1 }} spacing={3}>
+            <Grid item container xs={12} spacing={2}>
+                {challenges.map((category, i) => (
+                    <Grid item xs={12} md={6} key={i}>
+                        <FormControl>
+                            <FormLabel component="legend">{category.name}</FormLabel>
+                            <FormGroup>
+                                {category.challenges.map((challenge, j) => (
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                name={challenge.name}
+                                                checked={challengesAssigned.some((c) => c.challenge === challenge.id)}
+                                                onChange={(e) => handleChange(e, challenge.id)}
+                                            />
+                                        }
+                                        label={challenge.name}
+                                        key={j}
+                                    />
+                                ))}
+                            </FormGroup>
+                        </FormControl>
+                    </Grid>
+                ))}
             </Grid>
             <Grid item container xs={12}>
                 <Button

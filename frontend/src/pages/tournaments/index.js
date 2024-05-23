@@ -64,7 +64,7 @@ const Tournaments = (props) => {
   return (
     <Grid container spacing={3}>
       <HeaderBar
-        title='Listado de proyectos'
+        title='Torneos'
         showButton
         buttonTitle='Nuevo Torneo'
         buttonAction={() => setModalForm(true)}
