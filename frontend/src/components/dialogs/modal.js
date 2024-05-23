@@ -15,6 +15,9 @@ const style = {
   border: "none",
   boxShadow: 24,
   p: 4,
+  '@media (max-width:600px)': { // Change the width for smaller screens
+    width: "95%",
+  },
 };
 
 export default function TransitionsModal({ open, handleClose, title, children}) {

@@ -1,18 +1,31 @@
 .card {
+    display: flex;
+    flex-direction: row;
+
     cursor: pointer;
 }
 
 .cardRow {
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
 }
 
+.cardCompetitorAvatar {
+    display: flex;
+    flex: 0.3;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .cardAvatar {
     display: flex;
-    flex: 0.1;
+    flex: 1;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -20,7 +33,7 @@
 
 .cardCompetitor {
     display: flex;
-    flex: 0.2;
+    flex: 2;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -42,4 +55,28 @@
 .card:hover, .card:focus {
     animation: animate__bounce 0.1s linear;
     animation-iteration-count: infinite;
+}
+
+@media screen and (max-width: 768px) {
+
+    .cardRow {
+        padding: 0.5rem;
+    }
+
+    .cardCompetitorAvatar {
+        flex-direction: column;
+        flex: 0.4;
+    }
+
+    .cardCompetitor h6 {
+        text-align: center;
+    }
+
+    .challengesIcons {
+        flex: 0.6;
+    }
+
+    .challengeIcon {
+        width: 2rem;
+    }
 }

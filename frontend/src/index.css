@@ -7,6 +7,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (max-width: 768px) {
+  .datagrid-container {
+    overflow-x: auto;
+  }
+  .dataGrid {
+    width: 100%;
+    min-width: 1000px; /* Ajusta este valor según tus necesidades */
+  }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

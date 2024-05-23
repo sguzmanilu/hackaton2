@@ -57,13 +57,18 @@ export default function TournamentCompetitor(props) {
           <Bread isLast title={competitor ? competitor.user.name : ''} />
         </SimpleBreadcrumbs>
       </Grid>
-      <Grid container item style={{ padding: '1rem' }}>
+      <Grid container item className={styles.mainCard}>
         <Grid item md={6} component={Paper} className={styles.characterCard}>
           <img
             className={`animate__animated animate__pulse animate__infinite	infinite`}
             src='https://dragonball-api.com/characters/gohan.webp' alt='Reto' style={{ width: '70%' }} />
         </Grid>
-        <Grid item direction='column' md={6} style={{ paddingLeft: '1rem' }}>
+        <Grid
+          item
+          direction='column'
+          xs={12} md={6}
+          sx={{ paddingLeft: { xs: 0, md: '1rem'}, marginTop: { xs: '1rem', md: 0 } }}
+        >
           <Grid container direction='column' component={Paper} style={{ padding: '1rem' }}>
             <Typography variant='h6'>Información del Competidor</Typography>
             <Typography variant='body1'>Nombre: {competitor ? competitor.user.name : ''}</Typography>

@@ -28,16 +28,19 @@ export default function CardCompetitor({ id, user, kiLevel, character, totalChal
       item
       sm={12}
       component={Paper}
+      container
       style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}
       onClick={onClick}
     >
       <div className={styles.cardRow}>
-        <div className={styles.cardAvatar}>
-          <Avatar>{user.name[0]}</Avatar>
-        </div>
-        <div className={styles.cardCompetitor}>
-          <Typography variant='h6'>{user.name}</Typography>
-          <Typography variant='subtitle1'>Ki: {kiLevel}</Typography>
+        <div className={styles.cardCompetitorAvatar}>
+          <div className={styles.cardAvatar}>
+            <Avatar>{user.name[0]}</Avatar>
+          </div>
+          <div className={styles.cardCompetitor}>
+            <Typography variant='h6'>{user.name}</Typography>
+            <Typography variant='subtitle1'>Ki: {kiLevel}</Typography>
+          </div>
         </div>
         <div className={styles.challengesIcons}>
           <ChallengesRender totalChallenges={totalChallenges} />

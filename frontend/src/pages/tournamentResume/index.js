@@ -66,7 +66,7 @@ export default function TournamentResume(props) {
           <Bread isLast title={tournament ? tournament.name : ''} />
         </SimpleBreadcrumbs>
       </Grid>
-      <Grid container item>
+      <Grid container item width={'100%'}>
         {/* Renderizar los competidores */}
         {competitors.map((competitor) => (
           <CardCompetitor
