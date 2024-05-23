@@ -1,0 +1,21 @@
+.mainCard {
+    padding: 1rem;
+}
+
+.characterCard {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.challengeIcon {
+    width: 2rem;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .mainCard {
+        padding: 1rem 0;
+    }
+}

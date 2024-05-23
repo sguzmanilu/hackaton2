@@ -49,7 +49,7 @@ export default function LoginForm(props) {
   };
 
   return (
-    <div className={style.loginForm}>
+    <div className={`${style.loginForm} animate__animated animate__backInRight animate__delay-2s`}>
       <Typography
         variant='h4'
         style={{ marginBottom: '5rem', textAlign: 'center'}}

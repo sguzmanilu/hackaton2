@@ -61,6 +61,12 @@ const Tournaments = (props) => {
       })
   }
 
+  const handleCloseModal = () => {
+    setModalForm(false);
+    setItem(null);
+    getTournaments();
+  }
+
   return (
     <Grid container spacing={3}>
       <HeaderBar
@@ -85,15 +91,12 @@ const Tournaments = (props) => {
 
       <TransitionsModal
         open={modalForm}
-        handleClose={() => setModalForm(false)}
+        handleClose={handleCloseModal}
         title={item ? 'Editar Torneo' : 'Nuevo Torneo'}
       >
         <TournamentForm
           item={item}
-          handleClose={() => {
-            setModalForm(false);
-            getTournaments();
-          }}
+          handleClose={handleCloseModal}
         />
       </TransitionsModal>
       <ConfirmDialog

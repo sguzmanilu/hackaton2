@@ -63,7 +63,7 @@ export default function ScoreChallengesForm({ handleClose, competitor }) {
     }
 
     return (
-        <Grid container sx={{ marginTop: 1 }}>
+        <div style={{ marginTop: 1 }} className="datagrid-container">
             <DataGrid
                 keyExpr="id"
                 dataSource={challengesAssigned || []}
@@ -71,6 +71,7 @@ export default function ScoreChallengesForm({ handleClose, competitor }) {
                 allowColumnResizing={true}
                 columnResizingMode="nextColumn"
                 onSaved={onSaved}
+                columnAutoWidth={true}
             >
                 <Editing
                     mode="cell"
@@ -94,7 +95,7 @@ export default function ScoreChallengesForm({ handleClose, competitor }) {
                 <GroupPanel visible={true} />
 
                 {/* COLUMNS */}
-                <Column dataField="id" caption="Id" dataType="number" allowEditing={false} width={100}/>
+                <Column dataField="id" caption="Id" dataType="number" allowEditing={false} width={100} />
                 <Column
                     dataField="category"
                     caption="Categoría"
@@ -138,7 +139,6 @@ export default function ScoreChallengesForm({ handleClose, competitor }) {
                     showInfo={true}
                 />
             </DataGrid>
-
-        </Grid>
+        </div>
     )
 }

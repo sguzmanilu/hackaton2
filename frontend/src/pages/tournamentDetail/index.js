@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import { toast } from "react-toastify";
 import SimpleBreadcrumbs from '../../components/breadCums';
 import Bread from '../../components/breadCums/bread';
@@ -11,6 +11,8 @@ import CompetitorForm from './competitorForm';
 import ChallengeForm from './challengesForm';
 import api from "../../utils/api";
 import ScoreChallengesForm from './scoreChallengesForm';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const TournamentDetail = (props) => {
 
@@ -66,6 +68,16 @@ const TournamentDetail = (props) => {
         showButton
         buttonTitle='Agregar Participante'
         buttonAction={() => setModalCompetitorsForm(true)}
+        customComponent={
+          <div>
+            <IconButton color='primary' onClick={() => navigate(`/tournament/${tournamentId}`)}>
+              <ViewListIcon />
+            </IconButton>
+            <IconButton onClick={() => navigate(`/tournament/${tournamentId}/dashboard`)}>
+              <DashboardIcon />
+            </IconButton>
+          </div>
+        }
       />
       <Grid container item>
         <SimpleBreadcrumbs>

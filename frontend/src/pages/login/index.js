@@ -12,7 +12,7 @@ const Login = (props) => {
       </div>
       <div className={style.loginLogoContainer}>
         <div
-          className={style.loginLogoPanel}
+          className={`${style.loginLogoPanel} animate__animated animate__backInUp`}
           style={{ backgroundImage: `url('/portada.webp')` }}
         >
         </div>

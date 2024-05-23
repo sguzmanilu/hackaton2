@@ -56,9 +56,10 @@ function MainAppBar() {
       <AppBar position="static" className={style.appbar}>
         <Container maxWidth="xxl" disableGutters >
           <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 0, display: 'flex', paddingLeft: '2rem' }}>
+            <Box sx={{ flexGrow: 0, display: 'flex', paddingLeft: {xs: 0, md: '2rem'} }}>
               <div className={style.logoContainer}>
-                <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                <img src="/logo.png" alt="logo" className={style.logo} />
+                {/* <AdbIcon sx={{ display: 'flex', mr: 1 }} />
                 <Typography
                   variant="h6"
                   noWrap
@@ -75,23 +76,23 @@ function MainAppBar() {
                   }}
                 >
                   HACKATON
-                </Typography>
+                </Typography> */}
               </div>
             </Box>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 1, display: 'flex' }}>
               {pages.map((page) => (
                 <Button
                   key={page.name}
                   onClick={() => navigate(page.path)}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: { xs: 0, md: 2 }, color: 'white', display: 'block' }}
                 >
                   {page.name}
                 </Button>
               ))}
             </Box>
-            <Box sx={{ flexGrow: 0, paddingRight: '2rem' }}>
+            <Box sx={{ flexGrow: 0, paddingRight: {xs: 0, md: '2rem'} }}>
               <div style={{ display: 'flex', flex: 1, alignItems: 'center' }}>
-                <div style={{ display: 'flex', flex: 1, flexDirection: 'column', marginRight: '2rem' }}>
+                <div className={style.nameContainer}>
                   <Typography sx={{ lineHeight: 1 }} variant='button'>{getName()}</Typography>
                   <Typography sx={{ lineHeight: 1 }} variant='caption' color='#B6B4B4'>{getUser()}</Typography>
                 </div>
