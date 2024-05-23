@@ -76,6 +76,7 @@ export default function TournamentResume(props) {
             kiLevel={competitor.ki_level}
             character={competitor.character}
             totalChallenges={competitor.total_challenges}
+            onClick={() => navigate(`/tournament/${tournamentId}/dashboard/${competitor.id}`)}
           />
         ))}
       </Grid>

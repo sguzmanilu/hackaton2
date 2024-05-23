@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import styles from './styles.module.css';
 
-const ChallengesRender = ({ totalChallenges }) => {
+export const ChallengesRender = ({ totalChallenges }) => {
   const challenges = Array.from({ length: totalChallenges }, (v, i) => i);
   console.log('challenges', challenges)
 
@@ -21,7 +21,7 @@ const ChallengesRender = ({ totalChallenges }) => {
   )
 }
 
-export default function CardCompetitor({ id, user, kiLevel, character, totalChallenges }) {
+export default function CardCompetitor({ id, user, kiLevel, character, totalChallenges, onClick }) {
   return (
     <Grid
       className={`${styles.card} animate__animated animate__bounce`}
@@ -29,7 +29,7 @@ export default function CardCompetitor({ id, user, kiLevel, character, totalChal
       sm={12}
       component={Paper}
       style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}
-      onClick={() => console.log('click')}
+      onClick={onClick}
     >
       <div className={styles.cardRow}>
         <div className={styles.cardAvatar}>

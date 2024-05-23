@@ -71,7 +71,7 @@ class TournamentDetail(Resource):
         response_challenge = [marshal(u, challenge_assign_fields) for u in query]
         for i, item in enumerate(query):
             response_challenge[i]['challenge'] = marshal(Challenge.query.filter_by(id=item.challenge).first(), challenge_fields)
-            response_challenge[i]['challenge']['completed'] = item.score >= 71
+            response_challenge[i]['completed'] = item.score >= 71
             response_challenge[i]['challenge']['category'] = marshal(Category.query.filter_by(id=response_challenge[i]['challenge']['category']).first(), category_fields)
             
         response['challenges'] = response_challenge

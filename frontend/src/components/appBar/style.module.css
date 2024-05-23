@@ -17,10 +17,17 @@
     /* height: calc(100vh - 88px); */
     overflow-y: auto;
     overflow-x: hidden;
-    width: 100vw;
+    /* width: 100vw; */
     margin: 0;
     padding-top: 2rem;
     /*padding: 1rem 3rem;*/
+}
+
+.nameContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-right: 2rem;
 }
 
 @media (max-width: 900px) {
@@ -28,7 +35,7 @@
         padding: 0 1rem;
     }
 
-    .content {
-        /* padding: 1rem; */
+    .nameContainer {
+        display: none;
     }
 }
