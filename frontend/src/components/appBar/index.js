@@ -81,7 +81,7 @@ function MainAppBar() {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
+                  key={page.name}
                   onClick={() => navigate(page.path)}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
@@ -118,7 +118,7 @@ function MainAppBar() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={setting.onClick}>
+                  <MenuItem key={setting.name} onClick={setting.onClick}>
                     <Typography textAlign="center">{setting.name}</Typography>
                   </MenuItem>
                 ))}

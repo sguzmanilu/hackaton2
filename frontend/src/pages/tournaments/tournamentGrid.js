@@ -71,7 +71,7 @@ export default function TournamentGrid({ data, handleItemEdit, handleItemDelete,
         dataType="number"
       />
       <Column
-        dataField="id"
+        dataField="id2"
         caption=""
         width={150}
         dataType="number"

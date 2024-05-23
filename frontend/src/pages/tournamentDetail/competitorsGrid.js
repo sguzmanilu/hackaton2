@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import ChecklistRtlIcon from '@mui/icons-material/ChecklistRtl';
+import BuildIcon from '@mui/icons-material/Build';
 import DataGrid, {
   Column,
   Grouping,
@@ -20,7 +19,7 @@ import DataGrid, {
   KeyboardNavigation,
 } from "devextreme-react/data-grid";
 
-export default function CompetitorsGrid({ data, handleItemEdit, handleItemDelete, handleItemDetail }) {
+export default function CompetitorsGrid({ data, handleItemDetail }) {
 
   return (
     <DataGrid
@@ -56,7 +55,7 @@ export default function CompetitorsGrid({ data, handleItemEdit, handleItemDelete
         cellRender={(row) => row.data.user.name}
       />
       <Column
-        dataField="user"
+        dataField="user2"
         caption="Usuario Participante"
         dataType="string"
         calculateGroupValue={(row) => `${row.user.username}`}
@@ -74,7 +73,7 @@ export default function CompetitorsGrid({ data, handleItemEdit, handleItemDelete
         dataType="number"
       />
       <Column
-        dataField="id"
+        dataField="id2"
         caption=""
         width={150}
         dataType="number"
@@ -85,8 +84,11 @@ export default function CompetitorsGrid({ data, handleItemEdit, handleItemDelete
         cellRender={(row) => {
           return (
             <div style={{ display: 'flex', flex: 1, justifyContent: 'space-evenly' }}>
-              <IconButton title="Asignar retos" color="info" onClick={() => handleItemDetail(row.data)}>
-                <VisibilityIcon />
+              <IconButton title="Configurar retos" color="info" onClick={() => handleItemDetail(row.data)}>
+                <BuildIcon />
+              </IconButton>
+              <IconButton title="Evaluar retos" color="success" onClick={() => handleItemDetail(row.data)}>
+                <ChecklistRtlIcon />
               </IconButton>
             </div>
           );
