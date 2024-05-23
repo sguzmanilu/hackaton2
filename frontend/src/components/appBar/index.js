@@ -58,7 +58,8 @@ function MainAppBar() {
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 0, display: 'flex', paddingLeft: {xs: 0, md: '2rem'} }}>
               <div className={style.logoContainer}>
-                <AdbIcon sx={{ display: 'flex', mr: 1 }} />
+                <img src="/logo.png" alt="logo" className={style.logo} />
+                {/* <AdbIcon sx={{ display: 'flex', mr: 1 }} />
                 <Typography
                   variant="h6"
                   noWrap
@@ -75,7 +76,7 @@ function MainAppBar() {
                   }}
                 >
                   HACKATON
-                </Typography>
+                </Typography> */}
               </div>
             </Box>
             <Box sx={{ flexGrow: 1, display: 'flex' }}>
