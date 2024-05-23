@@ -4,7 +4,7 @@
   "description": "Api para Hackaton2",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx serverless deploy --aws-profile h2"
+    "deploy": "npx serverless deploy --aws-profile HA"
   },
   "author": "ILU",
   "license": "ISC"
