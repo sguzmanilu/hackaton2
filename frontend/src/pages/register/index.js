@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.css';
+import style from '../login/style.module.css';
 import RegisterForm from './registerForm';
 
 
@@ -13,9 +13,10 @@ const Register = (props) => {
       <div className={style.loginLogoContainer}>
         <div
           className={style.loginLogoPanel}
-          style={{ backgroundImage: `url('/portada.webp')` }}
+          style={{ backgroundImage: `url('/goku-cloud.gif')` }}
         >
         </div>
+        
       </div>
     </div>
   )

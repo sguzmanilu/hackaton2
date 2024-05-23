@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from './style.module.css';
+import style from '../login/style.module.css';
 import { useNavigate } from "react-router-dom";
 import { Typography, TextField, Grid, Button, IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
