@@ -1,0 +1,45 @@
+.card {
+    cursor: pointer;
+}
+
+.cardRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.cardAvatar {
+    display: flex;
+    flex: 0.1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardCompetitor {
+    display: flex;
+    flex: 0.2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.challengesIcons {
+    display: flex;
+    flex: 0.7;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.challengeIcon {
+    display: flex;
+    width: 4rem;
+}
+
+.card:hover, .card:focus {
+    animation: animate__bounce 0.1s linear;
+    animation-iteration-count: infinite;
+}

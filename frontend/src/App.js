@@ -5,6 +5,7 @@ import ProtectedRoute from './utils/protectedRoute';
 import MainAppBar from './components/appBar';
 import Tournaments from "./pages/tournaments";
 import TournamentDetail from "./pages/tournamentDetail";
+import TournamentResume from "./pages/tournamentResume";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import 'react-toastify/dist/ReactToastify.css'
@@ -25,6 +26,7 @@ const App = (props) => {
           }>
           <Route index element={<Tournaments />} />
           <Route path="tournament/:tournamentId" element={<TournamentDetail />} />
+          <Route path="tournament/:tournamentId/dashboard" element={<TournamentResume />} />
         </Route>
         <Route
           path="*"

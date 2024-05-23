@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './utils/context/authContext';
+import 'animate.css';
 import 'devextreme/dist/css/dx.material.blue.light.css'; // O el tema que desees
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
