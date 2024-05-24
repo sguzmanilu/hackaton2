@@ -6,8 +6,8 @@ const PROD = 'PROD'
 
 const environ = process.env.REACT_APP_BUILD_ENV || LOCAL
 
-const HOST = 'http://localhost:5000/api/'// LOCAL
-// const HOST = 'https://pcaycdpjt6.execute-api.us-east-1.amazonaws.com/dev/api/' // DESARROLLO
+// const HOST = 'http://localhost:5000/api/'// LOCAL
+const HOST = 'https://pcaycdpjt6.execute-api.us-east-1.amazonaws.com/dev/api/' // DESARROLLO
 
 class Api {
     async Get(uri, params = null) {
