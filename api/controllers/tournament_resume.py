@@ -2,7 +2,8 @@ from db import db
 from sqlalchemy import and_
 from models import Tournament, Competitor, User, ChallengeAssign, Challenge, Category
 from flask_restful import Resource, request, fields, marshal
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
+from utils.characters import get_characters
 
 competitor_fields = {
     'id': fields.Integer,
@@ -66,12 +67,20 @@ class TournamentDetail(Resource):
         response = marshal(competitor, competitor_fields)
         response['user'] = marshal(User.query.filter_by(id=competitor.user).first(), user_fields)
         response['total_challenges'] = ChallengeAssign.query.filter(and_(ChallengeAssign.is_active==True, ChallengeAssign.competitor==competitor_id, ChallengeAssign.score>=71)).count()
+        response['ki_level'] = competitor.ki_level if competitor.ki_level else 0
+        
+        # Buscar el personaje del competidor segun su ki_level
+        characteres = get_characters()
+        for character in characteres:
+            if response['ki_level'] >= character['minValue'] and response['ki_level'] < character['maxValue']:
+                response['character'] = character
+                break
         
         query = ChallengeAssign.query.filter_by(is_active=True, competitor=competitor_id).all()
         response_challenge = [marshal(u, challenge_assign_fields) for u in query]
         for i, item in enumerate(query):
             response_challenge[i]['challenge'] = marshal(Challenge.query.filter_by(id=item.challenge).first(), challenge_fields)
-            response_challenge[i]['completed'] = item.score >= 71
+            response_challenge[i]['completed'] = item.score >= 71 if item.score else False
             response_challenge[i]['challenge']['category'] = marshal(Category.query.filter_by(id=response_challenge[i]['challenge']['category']).first(), category_fields)
             
         response['challenges'] = response_challenge

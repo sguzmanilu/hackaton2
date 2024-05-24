@@ -47,6 +47,7 @@ api.add_resource(c.ChallengeAssignController, '/challenge-assign', '/challenge-a
 api.add_resource(c.ChallengeScoreController, '/challenge-score')
 api.add_resource(c.TournamentResume, '/tournament-resume/<int:tournament_id>')
 api.add_resource(c.TournamentDetail, '/tournament-detail/<int:competitor_id>')
+api.add_resource(c.CharacterController, '/character', '/character/<int:character_id>')
 # api.add_resource(c.TodoController, '/todos', '/todos/<int:todo_id>')
 
 if __name__ == '__main__':

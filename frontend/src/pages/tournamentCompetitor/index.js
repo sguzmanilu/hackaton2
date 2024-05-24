@@ -60,8 +60,9 @@ export default function TournamentCompetitor(props) {
       <Grid container item className={styles.mainCard}>
         <Grid item md={6} component={Paper} className={styles.characterCard}>
           <img
-            className={`animate__animated animate__pulse animate__infinite	infinite`}
-            src='https://dragonball-api.com/characters/gohan.webp' alt='Reto' style={{ width: '70%' }} />
+            className={`animate__animated animate__pulse animate__infinite	infinite ${styles.characterImg}`}
+            src={competitor?.character?.image} alt={competitor?.character?.name}
+          />
         </Grid>
         <Grid
           item
@@ -72,6 +73,7 @@ export default function TournamentCompetitor(props) {
           <Grid container direction='column' component={Paper} style={{ padding: '1rem' }}>
             <Typography variant='h6'>Información del Competidor</Typography>
             <Typography variant='body1'>Nombre: {competitor ? competitor.user.name : ''}</Typography>
+            <Typography variant='subtitle1'>Personaje: {competitor ? competitor.character?.name : ''}</Typography>
             <Typography variant='subtitle1'>Ki: {competitor ? competitor.ki_level : ''}</Typography>
           </Grid>
           <Grid container direction='column' component={Paper} style={{ padding: '1rem', marginTop: '1rem' }}>

@@ -117,7 +117,7 @@ const TournamentDetail = (props) => {
       </TransitionsModal>
       <TransitionsModal
         open={modalScoresForm}
-        handleClose={() => setModalScoresForm(false)}
+        handleClose={() => { setModalScoresForm(false); getCompetitors();}}
         title={'Asignar retos'}
       >
         <ScoreChallengesForm

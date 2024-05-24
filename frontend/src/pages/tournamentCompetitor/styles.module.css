@@ -14,6 +14,11 @@
     margin-left: 5px;
 }
 
+.characterImg {
+    min-width: 40%;
+    /* width: 40%; */
+}
+
 @media screen and (max-width: 768px) {
     .mainCard {
         padding: 1rem 0;
