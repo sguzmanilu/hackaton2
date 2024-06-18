@@ -26,6 +26,8 @@ app.config['BUNDLE_ERRORS'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config["DEBUG"] = True
 
+# cambio
+
 # Database Initialization
 db.init_app(app)
 

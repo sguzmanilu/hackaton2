@@ -14,7 +14,7 @@ def get_characters():
     characters_list = []
     for character in characters:
         characters_list.append({
-            'id': int(character['id']['N']),
+            'id': int(character['id']['S']),
             'name': character['name']['S'],
             'image': character['image']['S'],
             'minValue': int(character['minValue']['N']),
