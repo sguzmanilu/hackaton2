@@ -20,7 +20,7 @@ app.config["JWT_SECRET_KEY"] = 'HACKATON_DRAGON_BALL'
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=15)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://admin:SGuzman27$@hackaton.clcuvvaesiyh.us-east-1.rds.amazonaws.com:3306/dbHackaton"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://admin:SGuzman27$@hackaton.clcuvvaesiyh.us-east-1.rds.amazonaws.com:3306/dbHackato"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['BUNDLE_ERRORS'] = True
 app.config['PROPAGATE_EXCEPTIONS'] = True
